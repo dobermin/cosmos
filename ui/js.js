@@ -196,7 +196,7 @@ $(document).ready(function(){
     let url = $(location).attr('href');
     let index = url.indexOf(".html");
     if (index === -1) url = url.substr(0, url.length)
-    url = url.substr(0, index)
+    else url = url.substr(0, index)
     url = url.substr(0, url.lastIndexOf("/"))
     $("a").each(function () {
         let href = $(this).attr("href")

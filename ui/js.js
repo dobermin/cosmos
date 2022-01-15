@@ -164,7 +164,7 @@ function allPlanets() {
                 items.push("<td><select>" + options.join("") + "</select></td>")
                 let save = '<button class="btn btn-primary d-flex m-auto" onclick="setLords(this)" type="button">Сохранить</button>'
                 items.push("<td>" + save + "</td>")
-                let remove = '<button class="btn btn-danger d-flex m-auto" onclick="detetePlanet(this)" type="button">Удалить</button>'
+                let remove = '<button class="btn btn-danger d-flex m-auto" onclick="deletePlanet(this)" type="button">Удалить</button>'
                 items.push("<td>" + remove + "</td>")
                 $("<tr/>", {
                     "class": "",
@@ -175,7 +175,7 @@ function allPlanets() {
     });
 }
 
-function detetePlanet(a) {
+function deletePlanet(a) {
     let tr = $(a).parents("tr");
     let id = $('th[scope="row"]', tr).first().text();
     $.ajax({
@@ -194,7 +194,9 @@ function detetePlanet(a) {
 }
 $(document).ready(function(){
     let url = $(location).attr('href');
-    url = url.substr(0, url.indexOf(".html"))
+    let index = url.indexOf(".html");
+    if (index === -1) url = url.substr(0, url.length)
+    url = url.substr(0, index)
     url = url.substr(0, url.lastIndexOf("/"))
     $("a").each(function () {
         let href = $(this).attr("href")
